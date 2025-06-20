@@ -8,18 +8,17 @@ CENTER = (WIDTH // 2, HEIGHT // 2 + 100)
 SCALE = 350  # pixels per AU
 
 # === PLANETARY DATA ===
-# (name, semi-major axis (AU), eccentricity, period (days), color, radius px)
+# (name, semi-major axis (AU), eccentricity, period (days), color, radius km)
 PLANETS = [
-    ("Mercury", 0.387, 0.2056, 87.97, (200, 200, 200), 6),
-    ("Venus",   0.723, 0.0067, 224.7, (255, 200, 100), 10),
-    ("Earth",   1.000, 0.0167, 365.2, (100, 180, 255), 11),
-    ("Mars",    1.524, 0.0934, 687.0, (255, 100, 100), 9),
+    ("Mercury", 0.387, 0.2056, 87.97, (200, 200, 200), 3000),
+    ("Venus",   0.723, 0.0067, 224.7, (255, 200, 100), 11000),
+    ("Earth",   1.000, 0.0167, 365.2, (100, 180, 255), 12000),
+    ("Mars",    1.524, 0.0934, 687.0, (255, 100, 100), 7000),
 ]
 
 # (name, parent_planet_index, semi-major axis (AU), eccentricity, period (days), color, radius px)
 MOONS = [
     ("Moon", 2, 0.00257, 0.0549, 27.3, (220, 220, 220), 4),  # Earth's moon
-    # Add more moons here easily
 ]
 
 omega_deg = 29.0  # argument of periapsis in degrees (same for all for simplicity)
@@ -120,13 +119,13 @@ while running:
             if event.key == pygame.K_d:
                 cam_x += 0.1 / zoom  # Pan right
             if event.key == pygame.K_q:
-                zoom = max(0.2, zoom * 0.8)  # Zoom out
+                zoom = max(0, zoom * 0.8)  # Zoom out
             if event.key == pygame.K_e:
-                zoom = min(5.0, zoom * 1.25)  # Zoom in
+                zoom = min(10^5000, zoom * 1.25)  # Zoom in
             if event.key == pygame.K_z:
-                dt = max(0.01, dt * 0.5)  # Slow down
+                dt = max(0, dt * 0.5)  # Slow down
             if event.key == pygame.K_c:
-                dt = min(10.0, dt * 2)    # Speed up
+                dt = min(10^50, dt * 2)    # Speed up
 
     t += dt
 
@@ -152,7 +151,7 @@ while running:
             trails[i].pop(0)
         
         # Draw planet
-        pygame.draw.circle(screen, color, (x_px, y_px), max(2, int(radius * zoom)))
+        pygame.draw.circle(screen, color, (x_px, y_px), max(2, int(radius / (SCALE * 149) * zoom)))
         text = font.render(name, True, color)
         screen.blit(text, (x_px + 12, y_px - 12))
 
@@ -165,7 +164,7 @@ while running:
         m_x_au = parent_x_au + m_x_rel
         m_y_au = parent_y_au + m_y_rel
         m_x_px, m_y_px = to_screen(m_x_au, m_y_au)
-        pygame.draw.circle(screen, m_color, (m_x_px, m_y_px), max(2, int(m_radius * zoom)))
+        pygame.draw.circle(screen, m_color, (m_x_px, m_y_px), max(2, int(m_radius / (SCALE * 149) * zoom)))
         m_text = font.render(m_name, True, m_color)
         screen.blit(m_text, (m_x_px + 10, m_y_px - 10))
 
