@@ -10,15 +10,15 @@ SCALE = 350  # pixels per AU
 # === PLANETARY DATA ===
 # (name, semi-major axis (AU), eccentricity, period (days), color, radius px)
 PLANETS = [
-    ("Mercury", 0.387, 0.2056, 87.97, (200, 200, 200), 6),
-    ("Venus",   0.723, 0.0067, 224.7, (255, 200, 100), 10),
-    ("Earth",   1.000, 0.0167, 365.2, (100, 180, 255), 11),
-    ("Mars",    1.524, 0.0934, 687.0, (255, 100, 100), 9),
+    ("Mercury", 0.387098, 0.20563, 87.9691, (200, 200, 200), 2439.7),
+    ("Venus",   0.723332, 0.006772, 224.701, (255, 200, 100), 6051.8),
+    ("Earth",   1, 0.0167086, 365.256363004, (100, 180, 255), 6371.0),
+    ("Mars",    1.52368055, 0.0934, 686.98, (255, 100, 100), 3389.5),
 ]
 
 # (name, parent_planet_index, semi-major axis (AU), eccentricity, period (days), color, radius px)
 MOONS = [
-    ("Moon", 2, 0.00257, 0.0549, 27.3, (220, 220, 220), 4),  # Earth's moon
+    ("Moon", 2, 0.00256954861, 0.0549, 27.321661, (220, 220, 220), 1737.4),  # Earth's moon
     # Add more moons here easily
 ]
 
